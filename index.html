@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://bergariusdesign.github.io/Wedding/">
-<meta property="og:title" content="THE BEAUTY GUIDE | Твой идеальный свадебный образ">
-<meta property="og:description" content="Советы по подготовке кожи, волос и организации пространства от твоего стилиста.">
-
-<meta property="og:image" content="https://raw.githubusercontent.com/BergariusDesign/Wedding/main/4.png">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/BergariusDesign/Wedding/main/4.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE BRIDAL GUIDE | Modern</title>
@@ -39,9 +30,9 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Плавное появление страницы */
-        body { animation: fade 1.5s ease-out forwards; }
-        @keyframes fade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Плавное появление страницы без transform (защита от багов с позиционированием окон) */
+        body { animation: fade 1.2s ease-out forwards; }
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 
         /* --- ГЛАВНЫЙ ЭКРАН (Сплит-дизайн) --- */
         .hero {
@@ -66,44 +57,40 @@
         }
 
         .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(50px, 8vw, 120px);
-    font-weight: 400;
-    line-height: 0.9;
-    margin: 0 0 30px 0;
-    text-transform: uppercase;
-    
-    /* КРИТИЧЕСКИ ВАЖНО: */
-    display: inline-block;    /* Чтобы блок сузился точно по ширине текста */
-    position: relative;       /* Чтобы линии привязались к заголовку */
-    padding: 0 15px;          /* Расстояние от букв до полосок (меняйте 15px на 5px или 20px) */
-}
+            font-family: var(--font-display);
+            font-size: clamp(50px, 8vw, 120px);
+            font-weight: 400;
+            line-height: 0.9;
+            margin: 0 0 30px 0;
+            text-transform: uppercase;
+            display: inline-block;
+            position: relative;
+            padding: 0 15px;
+        }
 
-/* Левая полоска */
-.hero h1::before {
-    content: "";
-    position: absolute;
-    left: 0;                  /* Прижать к самому краю padding */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;               /* Толщина линии */
-    height: 70%;              /* Высота линии (70% от высоты букв) */
-    background-color: var(--text); /* Цвет линии (черный) */
-}
+        /* Левая полоска */
+        .hero h1::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 70%;
+            background-color: var(--text);
+        }
 
-/* Правая полоска */
-.hero h1::after {
-    content: "";
-    position: absolute;
-    right: 0;                 /* Прижать к самому краю padding */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 70%;
-    background-color: var(--text);
-}
-
-
+        /* Правая полоска */
+        .hero h1::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 70%;
+            background-color: var(--text);
+        }
 
         .hero p {
             font-size: 14px;
@@ -119,7 +106,7 @@
             background-image: url('https://images.unsplash.com/photo-1595956553066-624a94235948?q=80&w=1200&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            filter: grayscale(100%) contrast(1.1); /* Современное ЧБ фото */
+            filter: grayscale(100%) contrast(1.1);
         }
 
         /* --- КОНТЕНТНАЯ ЧАСТЬ --- */
@@ -147,10 +134,10 @@
         }
 
         .step-block.reverse {
-            direction: rtl; /* Меняем порядок на экране */
+            direction: rtl;
         }
         .step-block.reverse > * {
-            direction: ltr; /* Возвращаем нормальное чтение тексту */
+            direction: ltr;
         }
 
         .step-img-wrapper {
@@ -168,7 +155,7 @@
         }
 
         .step-img-wrapper:hover img {
-            transform: scale(1.05); /* Легкий современный зум при наведении */
+            transform: scale(1.05);
         }
 
         /* Огромная современная цифра-контур */
@@ -202,34 +189,138 @@
 
         li {
             list-style: none;
-    position: relative;
-    margin-bottom: 35px;      /* Отступ между блоками */
-    padding-left: 20px;       /* Расстояние от линии до текста */
-    border-left: 1px solid var(--line); /* Вертикальная линия слева */
-    line-height: 1.8;
-}
+            position: relative;
+            margin-bottom: 35px;
+            padding-left: 20px;
+            border-left: 1px solid var(--line);
+            line-height: 1.8;
+        }
 
-       li strong {
-    display: block;           /* Выносит текст описания на новую строку */
-    color: var(--text);       /* Цвет заголовка — черный */
-    font-weight: 700;         /* Максимальная жирность */
-    font-size: 14px;
-    margin-bottom: 5px;       /* Зазор перед описанием */
-    padding-left: 0;          /* Гарантирует выравнивание строго по левому краю */
-}
+        li strong {
+            display: block;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+            padding-left: 0;
+        }
 		
-.list-desc {
-    display: block;           /* Позволяет тексту занимать всю ширину под заголовком */
-    color: var(--333333);       /* Цвет описания — серый */
-    font-weight: 300;         /* Облегченный шрифт для контраста */
-    font-size: 14px;
-    padding-left: 0;          /* Выравнивание вровень с заголовком */
-}
+        .list-desc {
+            display: block;
+            color: var(--333333);
+            font-weight: 300;
+            font-size: 14px;
+            padding-left: 0;
+        }
 
-.list-desc::before {
-    content: none !important;
-}
-		
+        .list-desc::before {
+            content: none !important;
+        }
+
+        /* Кнопка Подробнее */
+        .more-btn {
+            display: block;
+			width: fit-content;
+            margin-top: 12px;
+            background: transparent;
+            border: 1px solid var(--text);
+            color: var(--text);
+            padding: 6px 14px;
+            font-family: var(--font-main);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .more-btn:hover {
+            background-color: var(--text);
+            color: var(--bg);
+        }
+
+        /* --- СТИЛИ ДЛЯ УНИВЕРСАЛЬНЫХ МОДАЛЬНЫХ ОКЕН --- */
+        .custom-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 100000 !important; 
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6) !important;
+            backdrop-filter: blur(5px);
+            align-items: center;      /* Центрирование по вертикали */
+            justify-content: center;   /* Центрирование по горизонтали */
+        }
+
+        .custom-modal-content {
+            background-color: #FFFFFF !important; /* Белый фон */
+            color: #000000 !important;            /* Черный текст */
+            padding: 30px;
+            border: 1px solid #000000;
+            width: 90%;
+            max-width: 450px;
+            max-height: 80vh; 
+            overflow-y: auto; 
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: modalFade 0.3s ease-out;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .custom-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #000000 !important;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .custom-modal-content h2 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 10px;
+            color: #000000 !important;
+        }
+
+        .custom-modal-content p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #333333 !important;
+        }
+
+        /* Нижняя кнопка закрытия */
+        .modal-bottom-close {
+            display: block;
+            width: 100%;
+            background: #000000 !important;
+            color: #FFFFFF !important;
+            border: 1px solid #000000;
+            padding: 12px;
+            font-family: var(--font-main);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .modal-bottom-close:hover {
+            background: transparent !important;
+            color: #000000 !important;
+        }
 
         /* Блок ограничений (Строгий квадрат) */
         .alert-box {
@@ -251,24 +342,21 @@
             margin-bottom: 15px;
         }
 		
-		/* Устанавливаем сплошную линию для всего списка в alert-box */
-.alert-box ul {
-    border-left: 1px solid #FFFFFF; /* Белая линия для контраста с темным фоном */
-    padding-left: 20px;            /* Отступ от линии до текста */
-    margin: 0;                     /* Убираем лишние отступы */
-}
+        .alert-box ul {
+            border-left: 1px solid #FFFFFF;
+            padding-left: 20px;
+            margin: 0;
+        }
 
-/* Сбрасываем индивидуальные линии и отступы у пунктов внутри alert-box */
-.alert-box li {
-    border-left: none !important;  /* Убираем прерывистую линию */
-    padding-left: 0 !important;    /* Убираем двойной отступ */
-    margin-bottom: 15px;           /* Оставляем расстояние между пунктами */
-}
+        .alert-box li {
+            border-left: none !important;
+            padding-left: 0 !important;
+            margin-bottom: 15px;
+        }
 
-/* Убираем отступ у последнего пункта, чтобы линия не была слишком длинной */
-.alert-box li:last-child {
-    margin-bottom: 0;
-}
+        .alert-box li:last-child {
+            margin-bottom: 0;
+        }
 
         /* --- ФУТЕР --- */
         .footer {
@@ -278,7 +366,7 @@
         }
 
         .footer p {
-            font-family: var(--font-display);
+            font-family: var(--font-Display);
             font-size: 24px;
             max-width: 700px;
             margin: 0 auto;
@@ -291,13 +379,12 @@
             .hero-image { width: 100%; height: 50vh; }
             .hero-text { padding: 60px 20px; text-align: center; }
             .hero h1 { font-size: 50px; }
-		
             
             .step-block, .step-block.reverse { 
                 grid-template-columns: 1fr; 
                 gap: 40px; 
                 margin-bottom: 80px; 
-                direction: ltr; /* Сброс реверса на мобильном */
+                direction: ltr;
             }
             .step-img-wrapper { height: 400px; }
             .step-number { font-size: 85px; top: -10px; left: 10px; -webkit-text-stroke: 1px #fff; }
@@ -305,51 +392,48 @@
             .content { padding: 50px 20px; }
         }
 		
-		body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Генерируем шум программно (SVG Data URI) */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.05; /* Уровень видимости шума */
-    pointer-events: none;
-    z-index: 9999;
-}
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
+        }
 
-/* Для Chrome, Safari и Edge */
-::-webkit-scrollbar {
-    width: 4px;
-}
-::-webkit-scrollbar-track {
-    background: #000;
-}
-::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-red);
-}
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-red);
+        }
 
-
-/* Стили для подушечки внизу */
-.heart-anchor {
+        .heart-anchor {
             width: 100%;
             display: flex;
             justify-content: center;
-            padding-bottom: 200px; /* Отступ от нижнего края страницы */
-            margin-top:-5px;      /* Отступ от текста сверху */
+            padding-bottom: 200px;
+            margin-top:-5px;
         }
 
         .heart-img {
-            width: 300px;           /* Тот самый маленький размер */
+            width: 300px;
             height: auto;
-            opacity: 0.5         /* Делаем его чуть бледнее, чтобы смотрелось дороже */
-            mix-blend-mode: multiply; /* Убирает возможный белый фон картинки, оставляя только линии */
+            opacity: 0.5;
+            mix-blend-mode: multiply;
         }
+		
     </style>
 </head>
 <body>
@@ -372,29 +456,41 @@
             <div class="step-info">
                 <h2>Подготовка кожи лица</h2>
                 <ul>
-        <li>
-            <strong>За 2–3 дня</strong>
-            <span class="list-desc">Сделайте деликатный пилинг или скраб. Это поможет уходовым средствам работать эффективнее, а тональному крему — лечь идеально ровно.</span>
-        </li>
-        <li>
-            <strong>Накануне вечером</strong>
-            <span class="list-desc">Уделите 15 минут проверенной увлажняющей маске для лица.</span>
-        </li>
-        <li>
-            <strong>Забота о губах</strong>
-            <span class="list-desc">За несколько дней до свадьбы регулярно наносите бальзам, а на ночь используйте питательную маску для губ, чтобы избежать шелушений.</span>
-        </li>
-        <li>
-            <strong>Утро свадьбы</strong>
-            <span class="list-desc">Если есть склонность к утренней отечности, отлично сработают гидрогелевые патчи под глаза.</span>
-        </li>
-    </ul>
+                    <li>
+                        <strong>За 1-2 дня до дня свадьбы</strong>
+                        <span class="list-desc">Деликатное отшелушивание. Используйте мягкие средства, которые удалят шелушения, но не вызовут покраснений или избыточной жирности.
+                            <button class="more-btn" onclick="openModal('modal-face')">Подробнее</button>
+                        </span>
+                    </li>
+                    <li>
+                        <strong>Накануне вечером</strong>
+                        <span class="list-desc">Уделите 15 минут проверенной увлажняющей маске для лица.  Это поможет восстановить и увлажнить кожу, укрепить гидролипидный барьер.
+						     <button class="more-btn" onclick="openModal('modal-2')">Подробнее</button>
+						</span>
+                    </li>
+                    <li>
+                        <strong>Забота о губах</strong>
+                        <span class="list-desc">За несколько дней до свадьбы регулярно наносите бальзам, а на ночь используйте питательную маску для губ, чтобы избежать шелушений.
+						<button class="more-btn" onclick="openModal('modal-4')">Подробнее</button> </span>
+                    </li>
+                    <li>
+                        <strong>Утро в день свадьбы</strong>
+                        <span class="list-desc">Используйте патчи для области вокруг глаз. Они помогут уменьшить отёчность, увлажнить тонкую кожу вокруг глаз, сделать взгляд более свежим.
+						 <button class="more-btn" onclick="openModal('modal-3')">Подробнее</button></span>
+                    </li>
+                </ul>
                 <div class="alert-box">
                     <h3>Чего стоит избегать:</h3>
                     <ul>
-                        <li>Любые салонные процедуры (коррекция бровей, наращивание ресниц, чистки лица) планируйте заранее — минимум за 3 - 5 дней до торжества.</li>
-                        <li>Не экспериментируйте с новой косметикой накануне.</li>
-                        <li>Минимизируйте соленую пищу и алкоголь за день до свадьбы, чтобы избежать отеков.</li>
+					<li>Любые салонные процедуры (коррекция бровей, наращивание ресниц, чистки лица) планируйте заранее — минимум за 3 - 5 дней до торжества.</li>
+					<li>Используйте только привычные средства. Не пробуйте новую косметику накануне важного события — это может вызвать непредвиденную реакцию кожи.
+Если нет специальных средств, лучше ограничиться минимальным уходом: умывание + лёгкий увлажняющий крем.</li>
+                        <li>Избегайте плотных текстур перед макияжем. Накануне дня свадьбы не используйте
+плотные ночные кремы,
+средства на основе масел,
+препараты с ретинолом,
+продукты, повышающие чувствительность кожи (с высоким содержанием кислот, витамина C и т. п.).</li>
+                        <li>Минимизируйте соленую пищу и алкоголь за день до свадьбы, чтобы избежать отекoв.</li>
                     </ul>
                 </div>
             </div>
@@ -469,12 +565,73 @@
         <p>И самое главное — это ваш отдых!
 <br>Постарайтесь максимально делегировать все заботы в последний день.<br> Лягте спать пораньше, чтобы утром чувствовать себя отдохнувшей и счастливой. Доверьте свою красоту мне, выдохните и просто <br>наслаждайтесь вашим днем!<br></p>
     </div>
-<script>
-    </script>
-	<div class="heart-anchor">
-        <img src="минималистичное_сердце_тонкие_202603311534.png" class="heart-img" alt="Heart">
+
+    <div id="modal-face" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="custom-close-btn" onclick="closeModal('modal-face')">&times;</span>
+            <h2>Дополнительные рекомендации</h2>
+            <p>Оптимальный выбор энзимные (бескислотные) пилинги и мягкие скрабы с мелкими абразивными частицами (целлюлоза, измельчённые косточки клюквы и т. п.). Такие средства действуют бережно, не травмируют кожу и подходят даже для чувствительного типа.</p>
+            <button class="modal-bottom-close" onclick="closeModal('modal-face')">Закрыть</button>
+        </div>
+    </div>
+	
+	<div id="modal-2" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="custom-close-btn" onclick="closeModal('modal-2')">&times;</span>
+            <h2>Дополнительные рекомендации</h2>
+            <p>Выбирайте маски с успокаивающими и увлажняющими компонентами (гиалуроновая кислота, пантенол, алоэ вера, цераамиды, сквалан).</p>
+            <button class="modal-bottom-close" onclick="closeModal('modal-2')">Закрыть</button>
+        </div>
+    </div>
+	
+	<div id="modal-3" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="custom-close-btn" onclick="closeModal('modal-3')">&times;</span>
+            <h2>Как использовать</h2>
+            <p>Нанесите патчи на предварительно очищенную кожу под глазами (узким концом к носу); оставьте на 10–15 минут; снимите патчи и аккуратно распределите остатки эссенции лёгкими похлопывающими движениями.</p>
+            <button class="modal-bottom-close" onclick="closeModal('modal-3')">Закрыть</button>
+        </div>
+    </div>
+	
+	<div id="modal-4" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="custom-close-btn" onclick="closeModal('modal-4')">&times;</span>
+            <h2>Контролируйте привычки</h2>
+            <p>Из-за предсвадебного волнения легко не заметить, как вы начинаете покусывать или облизывать губы на ветру. Постарайтесь следить за этим: свежие ранки и трещинки могут воспалиться, а пигмент помады распределится в них неравномерно.</p>
+            <button class="modal-bottom-close" onclick="closeModal('modal-4')">Закрыть</button>
+        </div>
     </div>
 
+    <script>
+        // Функция открытия любого окна по его ID (с flex-выравниванием)
+        function openModal(modalId) {
+            const targetModal = document.getElementById(modalId);
+            if (targetModal) {
+                targetModal.style.display = "flex";
+                document.body.style.overflow = "hidden"; // Блокируем скролл сайта сзади
+            }
+        }
 
+        // Функция закрытия любого окна по его ID
+        function closeModal(modalId) {
+            const targetModal = document.getElementById(modalId);
+            if (targetModal) {
+                targetModal.style.display = "none";
+                document.body.style.overflow = "auto"; // Возвращаем скролл сайту
+            }
+        }
+
+        // Закрытие при клике по затемненной области (для всех будущих окон)
+        window.addEventListener("click", (e) => {
+            if (e.target.classList.contains("custom-modal")) {
+                e.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
+    </script>
+    
+    <div class="heart-anchor">
+        <img src="минималистичное_сердце_тонкие_202603311534.png" class="heart-img" alt="Heart">
+    </div>
 </body>
 </html>
